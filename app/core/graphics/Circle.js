@@ -1,7 +1,5 @@
-function Circle(ray, point) {
+function Circle(ray, point, color, stroke) {
     this.context = context;
     this.ray = ray;
-    this.point = point;
-    this.color = "black";
-    this.stroke = "black";
+    this.point = point;    
 }
