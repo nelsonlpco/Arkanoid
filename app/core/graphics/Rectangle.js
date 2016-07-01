@@ -1,4 +1,4 @@
-function Rectangle(dimension, point) {
+function Rectangle(point,dimension) {
     this.dimension = dimension;
     this.point = point;    
 }
