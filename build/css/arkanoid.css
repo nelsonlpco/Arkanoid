@@ -1,0 +1,45 @@
+html,
+body {
+  padding: 0;
+  background: -o-linear-gradient(top #000, #333);
+  background: -moz-linear-gradient(top #000, #333);
+  background: -webkit-linear-gradient(top #000, #333);
+  background: linear-gradient(to top, #000 50%, #333);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  height: 100%;
+  overflow: hidden; }
+
+.container {
+  background-color: #eee;
+  width: 85%;
+  height: 90%;
+  margin: auto;
+  display: block; }
+
+.start {
+  z-index: 99;
+  color: #EEE;
+  font-weight: bold;
+  text-transform: capitalize;
+  font-size: 3.7em;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%); }
+
+.game {
+  width: 100%;
+  height: 100%; }
+
+#vidas {
+  position: absolute;
+  border: solid 1px blue;
+  color: red;
+  z-index: 10; }
+
+#canvasGame {
+  width: 100%;
+  height: 100%;
+  background: #333; }
