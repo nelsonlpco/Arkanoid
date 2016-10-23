@@ -61,10 +61,10 @@ class Collider {
     }
 
     private collided(b1: BoxCollider, b2: BoxCollider){                
-        return b1.coord.x + b1.size.width > b2.coord.x 
-            && b1.coord.x < b2.coord.x + b2.size.width
-            && b1.coord.y + b1.size.height > b2.coord.y
-            && b1.coord.y < b2.coord.y + b2.size.height;
+        return (b1.coord.x + b1.size.width) > b2.coord.x 
+            && b1.coord.x < (b2.coord.x + b2.size.width)
+            && (b1.coord.y + b1.size.height) > b2.coord.y
+            && b1.coord.y < (b2.coord.y + b2.size.height);
     }
 
     private exclusionProcess(){

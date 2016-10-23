@@ -6,6 +6,7 @@ class Tile extends GameObjectBase {
         super(context);
         this.coord = coord;
         this.size = size;
+        this.life = 1;
     }
 
     draw(): void {
@@ -19,11 +20,18 @@ class Tile extends GameObjectBase {
 
     }
 
-        collidedWith(object: GameObjectBase): void {
-
+    collidedWith(gameObject: GameObjectBase): void {        
+        this.collider.removeObject(this);
+        this.life -= 1;
+        let ball = (<Ball>gameObject);
+        if(ball.vy < 0)
+            ball.vy *= -1;      
+        else
+            ball.vx *= -1;  
+        ball.update();
     }
 
-        getColliders(): Array < BoxCollider > {
+    getColliders(): Array < BoxCollider > {
         return [new BoxCollider(this.coord, this.size)];
     }
 }

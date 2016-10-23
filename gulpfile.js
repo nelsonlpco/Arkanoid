@@ -27,4 +27,4 @@ gulp.task("jade-build", function () {
         .pipe(gulp.dest("./build/"));
 });
 
-gulp.task("build", ["ts-build", "jade-build", 'sass-build']);
+gulp.task("build", ["ts-build","sass-build","jade-build"]);

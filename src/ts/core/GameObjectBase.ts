@@ -11,6 +11,7 @@ abstract class GameObjectBase {
     context: CanvasRenderingContext2D;
     animator: Animator;
     collider: Collider;   
+    id: number;
 
     constructor(context: CanvasRenderingContext2D) {
         this.background = this.randomColor();
@@ -20,14 +21,19 @@ abstract class GameObjectBase {
     }
 
     public randomColor(): string {
-        var r = Math.floor(Math.random() * 255);
-        var g = Math.floor(Math.random() * 255);
-        var b = Math.floor(Math.random() * 255);
+        var r = Math.floor(Math.random() * 255) + 5;
+        var g = Math.floor(Math.random() * 255) + 5 ;
+        var b = Math.floor(Math.random() * 255) + 5;
         return 'rgb(' + r + ',' + g + ',' + b + ')';
     }
 
+    public calcCenter():number{
+        return (this.context.canvas.width / 2 - this.size.width / 2) - this.size.width / 2;
+    }
+
+
     abstract update(): void;
     abstract draw(): void;
-    abstract collidedWith(object: GameObjectBase): void;
+    abstract collidedWith(gameObject: GameObjectBase): void;
     abstract getColliders(): Array<BoxCollider>;
 }

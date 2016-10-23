@@ -3,49 +3,38 @@
 /// <reference path="./Core/BoxCollider.ts"/>
 
 class Ball extends GameObjectBase {
-    raio: number;
-    vx:number = 1;
-    vy:number = 1;
-    constructor(gameContext: CanvasRenderingContext2D, raio: number) {
+    radius: number;
+    vx: number = 3;
+    vy: number = 2;
+    constructor(gameContext: CanvasRenderingContext2D, radius: number) {
         super(gameContext);
-        this.raio = raio;                
+        this.radius = radius;
     }
 
-    draw(): void {        
+    public draw(): void {
         this.context.save();
         this.context.fillStyle = this.background;
         this.context.beginPath();
-        this.context.arc(this.coord.x, this.coord.y, this.raio, 0, 2 * Math.PI);
+        this.context.arc(this.coord.x, this.coord.y, this.radius, 0, 2 * Math.PI);
         this.context.fill();
         this.context.restore();
-
-        var cp = this.getColliders()[0];
-
-        this.context.save();
-        this.context.strokeStyle = 'yellow';        
-        this.context.strokeRect(cp.coord.x, cp.coord.y, cp.size.height, cp.size.width);
-        this.context.stroke();
-        this.context.restore();
     }
 
-    update(): void {        
+    public update(): void {
         let w = this.context.canvas.width;
         let h = this.context.canvas.height;
-
-        if(this.coord.x < this.raio || this.coord.x + this.raio > w)
+        if (this.coord.x < this.radius || this.coord.x + this.radius > w)
             this.vx *= -1;
-        if(this.coord.y < this.raio || this.coord.y + this.raio > h)
+        if (this.coord.y < this.radius || this.coord.y + this.radius > h)
             this.vy *= -1;
         this.coord.x += this.vx;
-        this.coord.y += this.vy;  
+        this.coord.y += this.vy;
     }
 
-    collidedWith(object: GameObjectBase):void{
-                
-    }
+    public collidedWith(gameObject: GameObjectBase): void {}
 
-    getColliders():Array<BoxCollider>{
-        let c = new Coord2D(this.coord.x - this.raio, this.coord.y - this.raio);        
-        return [new BoxCollider(c, new Size(this.raio*2, this.raio*2))];
+    public getColliders(): Array<BoxCollider> {
+        let c = new Coord2D(this.coord.x - this.radius, this.coord.y - this.radius);
+        return [new BoxCollider(c, new Size(this.radius * 2, this.radius * 2))];
     }
 }

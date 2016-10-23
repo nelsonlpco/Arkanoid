@@ -21,9 +21,9 @@ class Animator {
         this.taskesToExclude = new Array < GameObjectBase > ();
     }
 
-    addGameObject(object: GameObjectBase) {
-        object.animator = this;
-        this.gameObjects.push(object);
+    addGameObject(gameObject: GameObjectBase) {
+        this.gameObjects.push(gameObject);
+        gameObject.animator = this;
     }
     addtaskes(taskes: any) {
         this.taskes.push(taskes);
@@ -64,18 +64,6 @@ class Animator {
         });
     }
 
-    public removeGameObject(object: GameObjectBase) {
-        this.gameObjectsToExclude.push(object);
-    }
-
-    public removeTask(task:any) {
-        this.taskesToExclude.push(task);
-    }
-
-    private clearScreen() {
-        this.context.clearRect(0, 0, this.context.canvas.width, this.context.canvas.height);
-    }
-
     private exclusionProcess() {
         let tmpTaskes = new Array < any > ();
         let tmpGameObject = new Array < GameObjectBase > ();
@@ -95,6 +83,26 @@ class Animator {
         this.gameObjectsToExclude = [];
         this.taskes = tmpTaskes;
         this.gameObjects = tmpGameObject;
+    }
+
+    removeById(id: number) {
+        for (let i = 0, size = this.gameObjects.length; i < size; i++) {
+            if (this.gameObjects[i].id === id) {
+                this.removeGameObject(this.gameObjects[i]);
+            }
+        }
+    }
+
+    public removeGameObject(object: GameObjectBase) {
+        this.gameObjectsToExclude.push(object);
+    }
+
+    public removeTask(task: any) {
+        this.taskesToExclude.push(task);
+    }
+
+    private clearScreen() {
+        this.context.clearRect(0, 0, this.context.canvas.width, this.context.canvas.height);
     }
 
 }
